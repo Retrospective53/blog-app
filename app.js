@@ -21,7 +21,6 @@ app.use('/api/login', loginRouter)
 app.use('/api/blogs', blogRouter)
 app.use('/api/users', userRouter)
 
-app.use(middleware.unknownEndPoint)
 app.use(middleware.errorHandler)
 
 module.exports = app
