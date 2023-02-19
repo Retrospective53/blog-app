@@ -5,6 +5,7 @@ This is a web application that displays a list of blog posts sorted by the numbe
 ## Demo
 
 You can access the live demo [here](https://busy-gray-jackrabbit-fez.cyclic.app/).
+![Example Image](./example.jpg)
 
 ## Features
 
