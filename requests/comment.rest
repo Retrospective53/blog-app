@@ -1,0 +1,11 @@
+POST http://localhost:3003/api/blogs/63eba0357a944477efab2f96/comments
+Content-Type: application/json
+
+{
+    "author": "63d3a6896f0e21e2ede255a9",
+    "content": "nice one",
+    "is_anonymous": false
+}
+
+###
+GET http://localhost:3003/api/blogs/63eba0357a944477efab2f96/comments
