@@ -8,10 +8,23 @@ const loginRouter = require('./controllers/login')
 const mongoose = require('mongoose')
 const app = express()
 const middleware = require('./utils/middleware')
+const path = require('path')
 
 mongoose.connect(config.MONGODB_URI)
 
-app.use(express.static('build'))
+app.use(express.static(path.join(__dirname, 'build')))
+const handler = (req, res) => res.sendFile(path.join(__dirname, "build/index.html"))
+const routes = ["/", "/blogs", "/users"]
+routes.forEach( route => app.get(route, handler))
+app.get('/blogs/:id', (req, res) => {
+  const id = req.params.id
+  res.sendFile(path.join(__dirname, "build/index.html"))
+})
+app.get('/users/:id', (req, res) => {
+  const id = req.params.id
+  res.sendFile(path.join(__dirname, "build/index.html"))
+})
+
 app.use(cors())
 app.use(express.json())
 
