@@ -12,6 +12,16 @@ const path = require('path')
 
 mongoose.connect(config.MONGODB_URI)
 
+
+app.use(cors())
+app.use(express.json())
+
+app.use(middleware.tokenExtractor)
+
+app.use('/api/login', loginRouter)
+app.use('/api/blogs', blogRouter)
+app.use('/api/users', userRouter)
+
 app.use(express.static(path.join(__dirname, 'build')))
 const handler = (req, res) => res.sendFile(path.join(__dirname, "build/index.html"))
 const routes = ["/", "/blogs", "/users"]
@@ -24,15 +34,6 @@ app.get('/users/:id', (req, res) => {
   const id = req.params.id
   res.sendFile(path.join(__dirname, "build/index.html"))
 })
-
-app.use(cors())
-app.use(express.json())
-
-app.use(middleware.tokenExtractor)
-
-app.use('/api/login', loginRouter)
-app.use('/api/blogs', blogRouter)
-app.use('/api/users', userRouter)
 
 app.use(middleware.unknownEndPoint)
 app.use(middleware.errorHandler)
